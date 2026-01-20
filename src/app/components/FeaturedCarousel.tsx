@@ -64,13 +64,13 @@ export default function FeaturedCarousel({ products }: FeaturedCarouselProps) {
               className="min-w-[calc(33.333%-1rem)] flex-shrink-0"
             >
               <div className="group bg-white border border-neutral-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="aspect-square bg-neutral-50 overflow-hidden">
-                  <ImageWithFallback
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+                <div className="aspect-square bg-neutral-50 overflow-hidden h-[300px] w-full"> 
+                      <ImageWithFallback
+                        src={product.imageUrl || (product as any).image}
+                        alt={product.name}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
                   <p className="text-sm mb-4" style={{ color: 'var(--warm-accent)' }}>

@@ -8,7 +8,12 @@ import { categories, products } from '../data/products';
 import FeaturedCarousel from '../components/FeaturedCarousel';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { useState } from 'react';
-
+import imgHero from '../../assets/bolsa premiun.jpeg';
+import imgcollage1 from '../../assets/bolsa eco.jpeg';
+import imgcollage2 from '../../assets/bolsa estandar.jpeg';
+import imgcollage3 from '../../assets/bolsa manija.jpeg';
+import imgcollage4 from '../../assets/bolsa papel duro.jpeg';
+import imgcollage5 from '../../assets/empaque carton.jpeg';
 // Animation variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -84,11 +89,11 @@ export default function LandingPage() {
   const featuredProducts = products.slice(0, 6);
   const [menuOpen, setMenuOpen] = useState(false);
   const collageImages = [
-    { url: 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&h=800&fit=crop', alt: 'Paper bag with logo' },
-    { url: 'https://images.unsplash.com/photo-1607462109225-eee0b4c50eb7?w=400&h=500&fit=crop', alt: 'Premium tote bag' },
-    { url: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=500&h=600&fit=crop', alt: 'Cotton bag' },
-    { url: 'https://images.unsplash.com/photo-1594031018540-7f2b2b1e2d4a?w=400&h=600&fit=crop', alt: 'Reusable bags' },
-    { url: 'https://images.unsplash.com/photo-1614964303073-e9fc4e7f5f09?w=500&h=400&fit=crop', alt: 'Eco-friendly packaging' },
+    { url: imgcollage1, alt: 'Paper bag with logo' },
+    { url: imgcollage2, alt: 'Premium tote bag' },
+    { url: imgcollage3, alt: 'Cotton bag' },
+    { url: imgcollage4, alt: 'Reusable bags' },
+    { url: imgcollage5, alt: 'Eco-friendly packaging' },
   ];
 
   return (
@@ -241,8 +246,8 @@ export default function LandingPage() {
             >
               <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&h=800&fit=crop"
-                  alt="Custom reusable bags"
+                src={imgHero}            
+                alt="Custom reusable bags"
                   className="w-full h-full object-cover"
                 />
               </div>

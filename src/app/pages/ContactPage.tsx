@@ -154,42 +154,78 @@ export default function ContactPage() {
           </motion.div>
         </div>
            {/* Footer */}
-      <footer className="border-t border-neutral-200 py-12" style={{ backgroundColor: 'var(--warm-beige-light)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="font-semibold mb-4">ThisBag</h3>
-              <p className="text-sm text-neutral-600">
-                Premium custom packaging solutions for businesses of all sizes.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
-              <ul className="space-y-2 text-sm text-neutral-600">
-                <li><Link to="/catalog" className="hover:text-neutral-900 transition-colors">Products</Link></li>
-                <li><Link to="/catalog" className="hover:text-neutral-900 transition-colors">About</Link></li>
-                <li><Link to="/catalog" className="hover:text-neutral-900 transition-colors">Get a Quote</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-sm">Contact</h4>
-              <a
-                href="https://wa.me/1234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-neutral-600 hover:text-neutral-900 transition-colors block"
-              >
-                WhatsApp: +1 234 567 890
-              </a>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-neutral-300 text-center">
-            <p className="text-sm text-neutral-600">
-              © 2026 ThisBag. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <footer className="bg-[#D1A664] text-[#000000] pt-16 pb-8">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Grid principal */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+      {/* Empresa */}
+      <div>
+        <h3 className="text-2xl font-semibold mb-4">
+          This<span className="text-[color:var(--warm-khaki)]">Bag</span>
+        </h3>
+        <p className="text-sm leading-relaxed text-[#000000]">
+          Fabricamos bolsas personalizadas de alta calidad para empresas,
+          marcas y comercios. Soluciones en papel, plástico y materiales
+          ecológicos con procesos industriales certificados.
+        </p>
+      </div>
+
+      {/* Productos */}
+      <div>
+        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[color:var(--warm-khaki)]">
+          Productos
+        </h4>
+        <ul className="space-y-3 text-sm">
+          <li>Bolsas de Papel</li>
+          <li>Bolsas Plásticas</li>
+          <li>Bolsas Ecológicas</li>
+          <li>Personalización</li>
+        </ul>
+      </div>
+
+      {/* Empresa */}
+      <div>
+        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[#000000]">
+          Empresa
+        </h4>
+        <ul className="space-y-3 text-sm">
+          <li><Link to="/about" className="hover:text-white">Nuestra Empresa</Link></li>
+          <li><Link to="/process" className="hover:text-white">Procesos</Link></li>
+          <li><Link to="/sustainability" className="hover:text-white">Sostenibilidad</Link></li>
+          <li><Link to="/contact" className="hover:text-white">Contacto</Link></li>
+        </ul>
+      </div>
+
+      {/* Contacto */}
+      <div>
+        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[#000000]">
+          Contacto
+        </h4>
+        <ul className="space-y-4 text-sm text-[#000000]">
+          <li>
+            📍 Calle 33 No 11-83<br />
+            Bucaramanga, Colombia
+          </li>
+          <li>
+            📞 +57 310 263 0075
+          </li>
+          <li>
+            ✉️ comercial@thisbag.com
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    {/* Línea inferior */}
+    <div className="border-t border-white/10 pt-6 text-center text-xs text-[#000000]">
+      © 2026 ThisBag Packaging · Todos los derechos reservados
+    </div>
+
+  </div>
+</footer>
       </main>
     </div>
   );

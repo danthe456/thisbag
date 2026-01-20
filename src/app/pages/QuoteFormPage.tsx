@@ -202,6 +202,78 @@ Looking forward to your response!`;
           </div>
         </form>
       </main>
+        <footer className="bg-[#D1A664] text-[#000000] pt-16 pb-8">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Grid principal */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+      {/* Empresa */}
+      <div>
+        <h3 className="text-2xl font-semibold mb-4">
+          This<span className="text-[color:var(--warm-khaki)]">Bag</span>
+        </h3>
+        <p className="text-sm leading-relaxed text-[#000000]">
+          Fabricamos bolsas personalizadas de alta calidad para empresas,
+          marcas y comercios. Soluciones en papel, plástico y materiales
+          ecológicos con procesos industriales certificados.
+        </p>
+      </div>
+
+      {/* Productos */}
+      <div>
+        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[color:var(--warm-khaki)]">
+          Productos
+        </h4>
+        <ul className="space-y-3 text-sm">
+          <li>Bolsas de Papel</li>
+          <li>Bolsas Plásticas</li>
+          <li>Bolsas Ecológicas</li>
+          <li>Personalización</li>
+        </ul>
+      </div>
+
+      {/* Empresa */}
+      <div>
+        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[#000000]">
+          Empresa
+        </h4>
+        <ul className="space-y-3 text-sm">
+          <li><Link to="/about" className="hover:text-white">Nuestra Empresa</Link></li>
+          <li><Link to="/process" className="hover:text-white">Procesos</Link></li>
+          <li><Link to="/sustainability" className="hover:text-white">Sostenibilidad</Link></li>
+          <li><Link to="/contact" className="hover:text-white">Contacto</Link></li>
+        </ul>
+      </div>
+
+      {/* Contacto */}
+      <div>
+        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[#000000]">
+          Contacto
+        </h4>
+        <ul className="space-y-4 text-sm text-[#000000]">
+          <li>
+            📍 Calle 33 No 11-83<br />
+            Bucaramanga, Colombia
+          </li>
+          <li>
+            📞 +57 310 263 0075
+          </li>
+          <li>
+            ✉️ comercial@thisbag.com
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    {/* Línea inferior */}
+    <div className="border-t border-white/10 pt-6 text-center text-xs text-[#000000]">
+      © 2026 ThisBag Packaging · Todos los derechos reservados
+    </div>
+
+  </div>
+</footer>
     </div>
   );
 }
