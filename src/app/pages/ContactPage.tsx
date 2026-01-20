@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Smartphone, Link as LucideLink, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Smartphone, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
