@@ -176,13 +176,16 @@ export default function LandingPage() {
           >
             About
           </Link>
-          <Link
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-            className="text-lg font-medium"
-          >
-            Contact
-          </Link>
+            <Link
+              to="/contact"
+              onClick={(e) => {
+                e.stopPropagation(); // Detiene el clic aquí
+                setMenuOpen(false);
+              }}
+              className="text-lg font-medium py-3"
+            >
+              Contact
+            </Link> 
 
           <Button
             asChild
