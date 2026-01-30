@@ -52,7 +52,7 @@ export default function Header() {
                 <Link to="/about" onClick={() => setMenuOpen(false)} className="text-lg font-medium">About</Link>
                 <Link to="/contact" onClick={() => setMenuOpen(false)} className="text-lg font-medium py-3 border-b border-neutral-50">Contact</Link>
                 <Button asChild size="lg" className="mt-4" style={{ backgroundColor: '#C3A681', color: '#fff' }}>
-                  <Link to="/catalog" onClick={() => setMenuOpen(false)}>Get a Quote</Link>
+                  <Link to="/contact" onClick={() => setMenuOpen(false)}>Get a Quote</Link>
                 </Button>
               </nav>
             </motion.div>
