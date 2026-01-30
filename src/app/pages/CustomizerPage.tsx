@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Upload } from 'lucide-react';
+import {  Upload } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { products } from '../data/products.ts';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+
 
 export default function CustomizerPage() {
   const { productId } = useParams<{ productId: string }>();
@@ -65,20 +66,10 @@ export default function CustomizerPage() {
     );
   }
 
-  const totalPrice = (product.basePrice * quantity).toFixed(2);
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-semibold tracking-tight">ThisBag</Link>
-          <Button asChild variant="ghost" size="sm">
-            <Link to="/catalog" className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" /> Back to Catalog
-            </Link>
-          </Button>
-        </div>
-      </header>
+    
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -106,7 +97,6 @@ export default function CustomizerPage() {
           <div>
             <div className="mb-8">
               <h1 className="text-3xl font-semibold mb-2">{product.name}</h1>
-              <p className="text-2xl font-semibold text-neutral-900">${product.basePrice} <span className="text-base font-normal text-neutral-600">por unidad</span></p>
             </div>
 
             {/* Opciones de Logo */}
@@ -153,13 +143,7 @@ export default function CustomizerPage() {
               />
             </div>
 
-            {/* Precio Total */}
-            <div className="mb-8 p-6 bg-neutral-50 rounded-lg border border-neutral-100">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-neutral-600">Total Estimado</span>
-                <span className="text-2xl font-semibold">${totalPrice}</span>
-              </div>
-            </div>
+          
 
             {/* Botón CTA */}
             <Button
@@ -179,78 +163,7 @@ export default function CustomizerPage() {
         </div>
         
       </main>
-        <footer className="bg-[#D1A664] text-[#000000] pt-16 pb-8">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    {/* Grid principal */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-
-      {/* Empresa */}
-      <div>
-        <h3 className="text-2xl font-semibold mb-4">
-          This<span className="text-[color:var(--warm-khaki)]">Bag</span>
-        </h3>
-        <p className="text-sm leading-relaxed text-[#000000]">
-          Fabricamos bolsas personalizadas de alta calidad para empresas,
-          marcas y comercios. Soluciones en papel, plástico y materiales
-          ecológicos con procesos industriales certificados.
-        </p>
-      </div>
-
-      {/* Productos */}
-      <div>
-        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[color:var(--warm-khaki)]">
-          Productos
-        </h4>
-        <ul className="space-y-3 text-sm">
-          <li>Bolsas de Papel</li>
-          <li>Bolsas Plásticas</li>
-          <li>Bolsas Ecológicas</li>
-          <li>Personalización</li>
-        </ul>
-      </div>
-
-      {/* Empresa */}
-      <div>
-        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[#000000]">
-          Empresa
-        </h4>
-        <ul className="space-y-3 text-sm">
-          <li><Link to="/about" className="hover:text-white">Nuestra Empresa</Link></li>
-          <li><Link to="/process" className="hover:text-white">Procesos</Link></li>
-          <li><Link to="/sustainability" className="hover:text-white">Sostenibilidad</Link></li>
-          <li><Link to="/contact" className="hover:text-white">Contacto</Link></li>
-        </ul>
-      </div>
-
-      {/* Contacto */}
-      <div>
-        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[#000000]">
-          Contacto
-        </h4>
-        <ul className="space-y-4 text-sm text-[#000000]">
-          <li>
-            📍 Calle 33 No 11-83<br />
-            Bucaramanga, Colombia
-          </li>
-          <li>
-            📞 +57 310 263 0075
-          </li>
-          <li>
-            ✉️ comercial@thisbag.com
-          </li>
-        </ul>
-      </div>
-
-    </div>
-
-    {/* Línea inferior */}
-    <div className="border-t border-white/10 pt-6 text-center text-xs text-[#000000]">
-      © 2026 ThisBag Packaging · Todos los derechos reservados
-    </div>
-
-  </div>
-</footer>
+        
     </div>
   );
 }
