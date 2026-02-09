@@ -17,9 +17,7 @@ export default function CustomizerPage() {
   const [hasLogoOption, setHasLogoOption] = useState<'yes' | 'no' | null>(null);
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
-  const [quantity, setQuantity] = useState<number>(product?.minQuantity || 100);
-
-  // --- 2. FUNCIONES DE LÓGICA ---
+const [quantity, setQuantity] = useState<number>(Number(product?.minQuantity) || 0);  // --- 2. FUNCIONES DE LÓGICA ---
   const handleOptionChange = (option: 'yes' | 'no') => {
     setHasLogoOption(option);
     
@@ -138,7 +136,7 @@ export default function CustomizerPage() {
                 type="number"
                 min={product.minQuantity}
                 value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value) || product.minQuantity)}
+                onChange={(e) => setQuantity(Number(e.target.value))}
                 className="text-lg h-12"
               />
             </div>
