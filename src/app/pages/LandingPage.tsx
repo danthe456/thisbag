@@ -233,14 +233,12 @@ export default function LandingPage() {
 
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
 
-            Ready to Create Your Custom Bags?
-
+¿Estás listo para crear tus bolsas personalizadas?
           </h2>
 
           <p className="text-lg text-neutral-600 mb-8">
 
-            Get started with a quick quote and bring your brand to life
-
+Comienza con una cotización rápida y da vida a tu marca.
           </p>
 
           <Button
@@ -255,7 +253,7 @@ export default function LandingPage() {
 
           >
 
-            <Link to="/catalog">Start Your Order</Link>
+            <Link to="/catalog">Empieza aqui</Link>
 
           </Button>
 

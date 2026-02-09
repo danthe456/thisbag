@@ -11,6 +11,7 @@ import imgbolsa17 from '../../assets/empaque carton.jpeg';
 import imgbolsa3 from '../../assets/bolsa plastica.jpeg';
 import imgbolsa6 from '../../assets/bolsa plastica2.jpeg';
 import imgbolsa13 from '../../assets/bolsa plastica3.jpeg';
+import { min } from 'date-fns';
 
 /* ================================
    Types
@@ -25,7 +26,7 @@ export interface Product {
   imageUrl: string;
   dimensions: string;
   material: string;
-  minQuantity: number;
+  minQuantity?: string | number; // Nueva propiedad para cantidad mínima
 }
 
 /* ================================
@@ -43,7 +44,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa1,
     dimensions: '25 × 35 × 10 cm',
     material: 'Kraft paper 120gsm',
-    minQuantity: 100
+    minQuantity: 1000,
+    
   },
 
   {
@@ -53,7 +55,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa4,
     dimensions: '30 × 40 × 12 cm',
     material: 'Reinforced kraft paper',
-    minQuantity: 150
+    minQuantity: 1000,
+   
   },
 
   {
@@ -63,7 +66,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa5,
     dimensions: '32 × 42 × 12 cm',
     material: 'High density kraft paper',
-    minQuantity: 150
+       minQuantity: 1000,
+
   },
 
   {
@@ -73,7 +77,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa12,
     dimensions: '20 × 30 × 8 cm',
     material: 'Food grade paper',
-    minQuantity: 200
+       minQuantity: 1000,
+
   },
 
   {
@@ -83,7 +88,9 @@ export const products: Product[] = [
     imageUrl: imgbolsa11,
     dimensions: '35 × 45 × 12 cm',
     material: 'Premium laminated paper',
-    minQuantity: 100
+        minQuantity: 1000,
+
+    
   },
 
   /* ---------- PLASTIC BAGS ---------- */
@@ -94,8 +101,9 @@ export const products: Product[] = [
     category: 'plastic',
     imageUrl: imgbolsa3,
     dimensions: '30 × 40 cm',
-    material: 'Recyclable plastic',
-    minQuantity: 200
+    material: 'plástico oxobiodegradable de alta resistencia',
+            minQuantity: "1 rollo de material ",
+
   },
 
   {
@@ -104,8 +112,9 @@ export const products: Product[] = [
     category: 'plastic',
     imageUrl: imgbolsa6,
     dimensions: '35 × 45 cm',
-    material: 'HDPE reinforced plastic',
-    minQuantity: 200
+    material: 'plástico oxobiodegradable de alta resistencia',
+                minQuantity: "1 rollo de material ",
+
   },
 
   {
@@ -114,8 +123,9 @@ export const products: Product[] = [
     category: 'plastic',
     imageUrl: imgbolsa13,
     dimensions: '40 × 50 cm',
-    material: 'High resistance plastic',
-    minQuantity: 250
+    material: 'plástico oxobiodegradable de alta resistencia',
+                minQuantity: "1 rollo de material ",
+
   },
 
   /* ---------- ECO FRIENDLY ---------- */
@@ -127,7 +137,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa7,
     dimensions: '35 × 40 cm',
     material: '100% organic cotton',
-    minQuantity: 50
+    minQuantity: 100,
+    
   },
 
   {
@@ -137,7 +148,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa8,
     dimensions: '38 × 42 cm',
     material: 'Reinforced cotton canvas',
-    minQuantity: 50
+           minQuantity: 100,
+
   },
 
   {
@@ -147,7 +159,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa15,
     dimensions: '40 × 30 × 15 cm',
     material: 'Recycled cardboard',
-    minQuantity: 100
+        minQuantity: 1000,
+
   },
 
   {
@@ -157,7 +170,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa16,
     dimensions: '30 × 20 × 12 cm',
     material: 'Natural kraft cardboard',
-    minQuantity: 100
+       minQuantity: 1000,
+
   },
 
   {
@@ -167,7 +181,8 @@ export const products: Product[] = [
     imageUrl: imgbolsa17,
     dimensions: '45 × 35 × 25 cm',
     material: 'Corrugated recycled cardboard',
-    minQuantity: 80
+        minQuantity: 1000,
+
   }
 
 ];
@@ -177,7 +192,7 @@ export const products: Product[] = [
 ================================ */
 
 export const categories = [
-  { id: 'paper', name: 'Paper Bags' , description: 'Classic, eco-friendly paper options'},
-  { id: 'plastic', name: 'Plastic Bags', description: 'Durable and reusable plastic solutions' },
-  { id: 'eco', name: 'Eco Friendly',description: 'Sustainable and biodegradable materials'  }
+  { id: 'paper', name: 'Paper Bags' , description: 'Opciones de papel clásicas y ecológicas'},
+  { id: 'plastic', name: 'Plastic Bags', description: 'Soluciones plásticas duraderas y reutilizables' },
+  { id: 'eco', name: 'Eco Friendly',description: 'Materiales sostenibles y biodegradables'  }
 ];

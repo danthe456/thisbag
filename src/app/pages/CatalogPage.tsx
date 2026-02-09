@@ -47,7 +47,7 @@ export default function CatalogPage() {
             animate={{ x: 0, opacity: 1 }}
             className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900"
           >
-            Product Catalog
+            Catalogo de Productos 
           </motion.h1>
           <motion.p 
             initial={{ x: -20, opacity: 0 }}
@@ -55,7 +55,7 @@ export default function CatalogPage() {
             transition={{ delay: 0.1 }}
             className="mt-2 text-neutral-600 max-w-xl"
           >
-            Choose your packaging solution and customize it with your brand identity.
+            Elige tu solución de empaque y personalízala con la identidad de tu marca.
           </motion.p>
         </div>
       </section>
@@ -130,8 +130,9 @@ export default function CatalogPage() {
 
                   <div className="mt-auto flex items-center justify-between pt-4 border-t border-neutral-50">
                     <div className="flex flex-col">
-                      <span className="text-[10px] uppercase text-neutral-400 font-bold">Pedido Mínimo</span>
-                      <span className="text-sm font-semibold text-neutral-800">{product.minQuantity} unidades</span>
+                      <p className="text-xs text-neutral-500 mb-1">
+                       Cantidad Minima: {product.minQuantity}
+                      </p>
                     </div>
 
                     <Button asChild size="sm" className="bg-[#C3A681] hover:bg-neutral-900 transition-colors rounded-lg">

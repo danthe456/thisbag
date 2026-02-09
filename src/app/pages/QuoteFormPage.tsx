@@ -85,10 +85,10 @@ Looking forward to your response!`;
       <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <h1 className="text-3xl font-semibold tracking-tight mb-2">
-            Request Your Quote
+Solicitud de Cotización
           </h1>
           <p className="text-neutral-600">
-            Fill in your details and we'll send your quote request via WhatsApp
+            Llena tus datos y te enviaremos tu solicitud de cotización por WhatsApp
           </p>
         </div>
 
@@ -119,10 +119,7 @@ Looking forward to your response!`;
               </div>
             )}
             <div className="pt-4 mt-4 border-t border-neutral-200">
-              <div className="flex justify-between">
-                <span className="text-sm text-neutral-600">Estimated Total</span>
-                <span className="text-xl font-semibold">${totalPrice}</span>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -131,7 +128,7 @@ Looking forward to your response!`;
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <Label htmlFor="name" className="text-sm font-medium mb-2 block">
-              Full Name *
+              Nombre Completo *
             </Label>
             <Input
               id="name"
@@ -146,7 +143,7 @@ Looking forward to your response!`;
 
           <div>
             <Label htmlFor="city" className="text-sm font-medium mb-2 block">
-              City *
+              ciudad *
             </Label>
             <Input
               id="city"
@@ -161,7 +158,7 @@ Looking forward to your response!`;
 
           <div>
             <Label htmlFor="quantity-form" className="text-sm font-medium mb-2 block">
-              Quantity *
+              Cantidad *
             </Label>
             <Input
               id="quantity-form"
@@ -180,7 +177,7 @@ Looking forward to your response!`;
               className="w-full text-base flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />
-              Send Quote via WhatsApp
+              solicitar cotización vía WhatsApp
             </Button>
             <p className="text-xs text-neutral-500 text-center mt-3">
               You'll be redirected to WhatsApp with your quote details pre-filled
