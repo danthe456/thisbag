@@ -75,7 +75,6 @@ Looking forward to your response!`;
     return null;
   }
 
-  const totalPrice = (customizationData.product.basePrice * formData.quantity).toFixed(2);
 
   return (
     <div className="min-h-screen bg-white">
