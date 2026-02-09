@@ -11,8 +11,6 @@ import imgbolsa17 from '../../assets/empaque carton.jpeg';
 import imgbolsa3 from '../../assets/bolsa plastica.jpeg';
 import imgbolsa6 from '../../assets/bolsa plastica2.jpeg';
 import imgbolsa13 from '../../assets/bolsa plastica3.jpeg';
-import { min } from 'date-fns';
-
 /* ================================
    Types
 ================================ */
