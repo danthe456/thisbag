@@ -23,17 +23,20 @@ function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      const timer = setTimeout(() => setIsVisible(true), 2000); // Aparece 2 seg después
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  if (typeof window === 'undefined') return; // protección SSR
+  const consent = localStorage.getItem('cookie-consent');
+  if (!consent) {
+    const timer = setTimeout(() => setIsVisible(true), 2000);
+    return () => clearTimeout(timer);
+  }
+}, []);
 
-  const acceptCookies = () => {
+const acceptCookies = () => {
+  if (typeof window !== 'undefined') {
     localStorage.setItem('cookie-consent', 'true');
-    setIsVisible(false);
-  };
+  }
+  setIsVisible(false);
+};
 
   return (
     <AnimatePresence>

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+import WhatsAppButton from '../components/WhatsAppButton';
 
+// Dentro del return, al mismo nivel que <Header /> y <Footer />:
 // ─────────────────────────────────────────────
 // Footer alineado al sistema de diseño DOPACK
 //
@@ -31,9 +33,12 @@ const CONTACTO = [
 function FooterLink({ to, label }: { to: string; label: string }) {
   return (
     <li>
+      <WhatsAppButton />
+
       <Link
         to={to}
         className="text-neutral-400 hover:text-[#C3A681] transition-colors duration-200 text-sm"
+        
       >
         {label}
       </Link>

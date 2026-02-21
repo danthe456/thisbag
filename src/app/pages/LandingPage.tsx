@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import { LeafyGreen, ShoppingBag, Boxes, ChevronDown, Star } from 'lucide-react';
 import { motion, useInView, type Variants } from 'framer-motion';
 import { Button } from '../components/ui/button';
-import { categories, products } from '../data/products';
+import { products } from '../data/products';
 
 // Imágenes
 import imgRolloBiodegradable from '../../assets/rollooxobiodegradable.jpg';
 import imgHero from '../../assets/bolsa premiunV.jpeg';
 import imgServicio1 from '../../assets/descargar.jpeg';
 import imgServicio2 from '../../assets/Imágenes de Tarjetas de presentacion - Descarga gratuita en Freepik.jpeg';
+//videos
+import video1 from '../../assets/video1.mp4';
+import video2 from '../../assets/video2.mp4';
 // ===============================================================
 // SISTEMA DE DISEÑO
 // ---------------------------------------------------------------
@@ -194,78 +197,132 @@ export default function LandingPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          3. BENTO GRID  |  Nivel 0: white  |  py-24
-      ───────────────────────────────────────────────────────── */}
-      <AnimatedSection className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-black text-neutral-900 mb-5 leading-tight">
-                No hay límites.{' '}
-                <span className="text-neutral-400">
-                  Tú lo imaginas, nosotros lo creamos.
-                </span>
-              </h2>
-              <p className="text-base text-neutral-500 leading-relaxed">
-                Mira algunos de nuestros trabajos recientes. Todo se fabrica bajo pedido, asegurando
-                que tu empaque sea único.
-              </p>
-            </div>
-            <Link
-              to="/catalog"
-              className="text-neutral-900 font-bold hover:text-[#C3A681] transition-colors whitespace-nowrap text-sm uppercase tracking-widest"
-            >
-              Ver galería completa →
-            </Link>
-          </div>
+    3. BENTO GRID DE CATEGORÍAS  |  Nivel 0: white  |  py-24
+    Layout basado en imagen de referencia:
+      Col 1 (grande): Bolsas — ocupa 2 filas
+      Col 2-3 fila 1: Etiquetas | Cajas — cuadradas
+      Col 2-3 fila 2: Adhesivos — ancha (span 2 cols)
+───────────────────────────────────────────────────────── */}
+<AnimatedSection className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {bentoProducts[0] && (
-              <div className="md:col-span-2 aspect-square md:aspect-video rounded-3xl overflow-hidden relative group bg-neutral-100">
-                <img
-                  src={bentoProducts[0].imageUrl}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt={bentoProducts[0].name}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
-                  <h3 className="text-white text-xl font-bold">{bentoProducts[0].name}</h3>
-                </div>
-              </div>
-            )}
-            {bentoProducts[1] && (
-              <div className="aspect-square rounded-3xl overflow-hidden relative group bg-neutral-100">
-                <img
-                  src={bentoProducts[1].imageUrl}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt={bentoProducts[1].name}
-                />
-              </div>
-            )}
-            {bentoProducts[2] && (
-              <div className="aspect-square rounded-3xl overflow-hidden relative group bg-neutral-100">
-                <img
-                  src={bentoProducts[2].imageUrl}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt={bentoProducts[2].name}
-                />
-              </div>
-            )}
-            {bentoProducts[3] && (
-              <div className="md:col-span-2 aspect-square md:aspect-video rounded-3xl overflow-hidden relative group bg-neutral-100">
-                <img
-                  src={bentoProducts[3].imageUrl}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt="Acabados Premium"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
-                  <h3 className="text-white text-xl font-bold">Acabados Premium</h3>
-                </div>
-              </div>
-            )}
-          </div>
+    {/* Cabecera */}
+    <div className="flex flex-col md:flex-row justify-between items-end mb-14 gap-6">
+      <div className="max-w-2xl">
+        <h2 className="text-4xl md:text-5xl font-black text-neutral-900 mb-5 leading-tight">
+          No hay límites.{' '}
+          <span className="text-neutral-400">
+            Tú lo imaginas, nosotros lo creamos.
+          </span>
+        </h2>
+        <p className="text-base text-neutral-500 leading-relaxed">
+          Explora nuestras líneas de producto. Todo se fabrica bajo pedido,
+          asegurando que tu empaque sea único.
+        </p>
+      </div>
+      <Link
+        to="/catalog"
+        className="text-neutral-900 font-bold hover:text-[#C3A681] transition-colors whitespace-nowrap text-sm uppercase tracking-widest"
+      >
+        Ver galería completa →
+      </Link>
+    </div>
+
+    {/* ── Bento Grid ──
+        Mobile:  1 columna apilada
+        Desktop: grid de 3 cols × 2 filas
+          [Bolsas 1×2] [Etiquetas 1×1] [Cajas 1×1]
+          [Bolsas 1×2] [Adhesivos  2×1          ]
+    */}
+    <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-3 md:gap-4 md:h-[560px]">
+
+      {/* ── BOLSAS — grande izquierda, 2 filas ── */}
+      <Link
+        to="/catalog?category=bolsas"
+        className="group relative overflow-hidden rounded-3xl bg-neutral-900
+                   md:row-span-2
+                   aspect-[4/3] md:aspect-auto"
+      >
+        <img
+          src={bentoProducts[0]?.imageUrl}
+          alt="Bolsas personalizadas"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        {/* Overlay permanente degradado */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        {/* Copy */}
+        <div className="absolute bottom-0 left-0 p-7">
+          <h3 className="text-white text-2xl font-black mb-1">Bolsas</h3>
+          <span className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest text-white/60 group-hover:text-[#C3A681] transition-colors duration-300">
+            Ver más →
+          </span>
         </div>
-      </AnimatedSection>
+      </Link>
 
+      {/* ── ETIQUETAS — pequeña arriba derecha ── */}
+      <Link
+        to="/catalog?category=etiquetas"
+        className="group relative overflow-hidden rounded-3xl bg-neutral-100
+                   aspect-square md:aspect-auto"
+      >
+        <img
+          src={bentoProducts[1]?.imageUrl}
+          alt="Etiquetas personalizadas"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 p-6">
+          <h3 className="text-white text-xl font-black mb-1">Etiquetas</h3>
+          <span className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest text-white/60 group-hover:text-[#C3A681] transition-colors duration-300">
+            Ver más →
+          </span>
+        </div>
+      </Link>
+
+      {/* ── CAJAS — pequeña arriba derecha (col 3) ── */}
+      <Link
+        to="/catalog?category=cajas"
+        className="group relative overflow-hidden rounded-3xl bg-neutral-100
+                   aspect-square md:aspect-auto"
+      >
+        <img
+          src={bentoProducts[2]?.imageUrl}
+          alt="Cajas personalizadas"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 p-6">
+          <h3 className="text-white text-xl font-black mb-1">Cajas</h3>
+          <span className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest text-white/60 group-hover:text-[#C3A681] transition-colors duration-300">
+            Ver más →
+          </span>
+        </div>
+      </Link>
+
+      {/* ── ADHESIVOS — ancha abajo (col 2 + 3, fila 2) ── */}
+      <Link
+        to="/catalog?category=adhesivos"
+        className="group relative overflow-hidden rounded-3xl bg-neutral-900
+                   md:col-span-2
+                   aspect-[16/7] md:aspect-auto"
+      >
+        <img
+          src={bentoProducts[3]?.imageUrl}
+          alt="Adhesivos personalizados"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 p-7">
+          <h3 className="text-white text-2xl font-black mb-1">Adhesivos</h3>
+          <span className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest text-white/60 group-hover:text-[#C3A681] transition-colors duration-300">
+            Ver más →
+          </span>
+        </div>
+      </Link>
+
+    </div>
+  </div>
+</AnimatedSection>
       {/* ─────────────────────────────────────────────────────────
           4. SERVICIOS  |  Nivel 1: #F5F3EF  |  py-24
       ───────────────────────────────────────────────────────── */}
@@ -409,90 +466,222 @@ export default function LandingPage() {
           </div>
         </div>
       </AnimatedSection>
+{/* ─────────────────────────────────────────────────────────
+    SECCIÓN: ASÍ LO FABRICAMOS
+    Ubicación: justo después de la sección del Rollo OXO
+    2 videos en autoplay, muted, loop — sin controles
+    Fondo: #111111 (Nivel 2) para que los videos destaquen
+───────────────────────────────────────────────────────── */}
+<section className="bg-[#111111] py-20">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+    {/* Cabecera */}
+    <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+      <div>
+        <div className="inline-flex items-center gap-2 mb-4">
+          <span className="w-5 h-px bg-[#C3A681]" />
+          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#C3A681]">
+            Proceso de fabricación
+          </span>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
+          Así fabricamos <br className="hidden md:block" />
+          tu empaque.
+        </h2>
+      </div>
+      <p className="text-sm text-neutral-500 max-w-xs leading-relaxed">
+        De la materia prima al empaque terminado — calidad supervisada en cada etapa del proceso.
+      </p>
+    </div>
+
+    {/* Grid de 2 videos */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      {/* Video 1 — Fabricación */}
+      <div className="group relative rounded-3xl overflow-hidden bg-neutral-900 aspect-video">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          
+          <source src={video1} type="video/mp4" />
+        </video>
+
+        {/* Overlay con etiqueta */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 p-6">
+          <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-[10px] font-black uppercase tracking-widest text-white/70 mb-2">
+            Paso 1
+          </span>
+          <h3 className="text-white text-lg font-black">Fabricación</h3>
+          <p className="text-white/50 text-xs mt-1">Corte, sellado y formado del material base</p>
+        </div>
+      </div>
+
+      {/* Video 2 — Impresión */}
+      <div className="group relative rounded-3xl overflow-hidden bg-neutral-900 aspect-video">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+        >
+          
+          <source src={video2} type="video/mp4" />
+        </video>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 p-6">
+          <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-[10px] font-black uppercase tracking-widest text-white/70 mb-2">
+            Paso 2
+          </span>
+          <h3 className="text-white text-lg font-black">Impresión</h3>
+          <p className="text-white/50 text-xs mt-1">Aplicación de logo, colores y acabados personalizados</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
       {/* ─────────────────────────────────────────────────────────
           6. SELECTOR DE MATERIALES  |  Nivel 1: #F5F3EF  |  py-24
       ───────────────────────────────────────────────────────── */}
-      <AnimatedSection className="py-24 bg-[#F5F3EF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-neutral-900 mb-5">
-              Elige el material ideal
-            </h2>
-            <p className="text-base text-neutral-500 max-w-xl mx-auto leading-relaxed">
-              Cada empaque comunica algo distinto. Selecciona el material que mejor represente tu marca.
-            </p>
-          </div>
+<AnimatedSection className="py-24 bg-[#F5F3EF]">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-black text-neutral-900 mb-5">
+        Elige el material ideal
+      </h2>
+      <p className="text-base text-neutral-500 max-w-xl mx-auto leading-relaxed">
+        Cada material tiene un propósito distinto. Te ayudamos a elegir el que mejor
+        comunica los valores de tu marca.
+      </p>
+    </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end"
+    <motion.div
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end"
+    >
+      {/* ── Datos reales por material ── */}
+      {[
+        {
+          id:          'papel',
+          name:        'Papel & Kraft',
+          icon:        <ShoppingBag className="w-5 h-5" />,
+          tag:         null,
+          featured:    false,
+          desc:        'La opción más elegante para tiendas, boutiques y marcas premium. Transmite calidez y sofisticación desde el primer contacto.',
+          specs: [
+            { label: 'Ideal para',  value: 'Retail, joyería, moda' },
+            { label: 'Acabados',    value: 'Laminado, hot stamping, relieve' },
+            { label: 'Impresión',   value: 'Full color o 1–4 tintas' },
+          ],
+          badge: null,
+        },
+        {
+          id:          'plastico',
+          name:        'Plástico de Alta Resistencia',
+          icon:        <Boxes className="w-5 h-5" />,
+          tag:         'Recomendado',
+          featured:    true,
+          desc:        'Máxima durabilidad para negocios de alto volumen. Soporta peso y humedad sin perder presentación — perfecto para supermercados, droguerías y distribución masiva.',
+          specs: [
+            { label: 'Ideal para',  value: 'Distribución, alimentos, retail masivo' },
+            { label: 'Resistencia', value: 'Alta carga y humedad' },
+            { label: 'Mínimo',      value: 'Desde 500 unidades' },
+          ],
+          badge: null,
+        },
+        {
+          id:          'eco',
+          name:        'Materiales Ecológicos',
+          icon:        <LeafyGreen className="w-5 h-5" />,
+          tag:         null,
+          featured:    false,
+          desc:        'Oxobiodegradables, reciclados y compostables. Para marcas que comunican responsabilidad ambiental sin sacrificar calidad ni presentación.',
+          specs: [
+            { label: 'Ideal para',  value: 'Alimentos, e-commerce, eventos' },
+            { label: 'Certificación', value: 'Oxobiodegradable' },
+            { label: 'Mensaje',     value: 'Compromiso con el planeta' },
+          ],
+          badge: '🌱',
+        },
+      ].map((mat) => (
+        <motion.div
+          key={mat.id}
+          variants={staggerItem}
+          className={mat.featured ? 'md:-translate-y-5' : ''}
+        >
+          <Link
+            to={`/catalog?category=${mat.id}`}
+            className={`group block rounded-3xl p-8 transition-all duration-300 h-full
+              ${mat.featured
+                ? 'bg-neutral-900 text-white shadow-2xl hover:bg-black'
+                : 'bg-white hover:shadow-xl border border-neutral-200/60'
+              }`}
           >
-            {categories.map((category, index) => {
-              const isFeatured = index === 1;
-              return (
-                <motion.div
-                  key={category.id}
-                  variants={staggerItem}
-                  className={isFeatured ? 'md:-translate-y-5' : ''}
-                >
-                  <Link
-                    to={`/catalog?category=${category.id}`}
-                    className={`group block rounded-3xl p-10 transition-all duration-300
-                      ${isFeatured
-                        ? 'bg-neutral-900 text-white shadow-2xl hover:bg-black'
-                        : 'bg-white hover:shadow-lg border border-neutral-200/60'
-                      }`}
-                  >
-                    {isFeatured && (
-                      <span className="inline-block mb-5 text-xs font-black uppercase tracking-widest text-[#C3A681]">
-                        Recomendado
-                      </span>
-                    )}
+            {/* Tag superior */}
+            {mat.tag && (
+              <span className="inline-block mb-5 text-xs font-black uppercase tracking-widest text-[#C3A681]">
+                {mat.tag}
+              </span>
+            )}
 
-                    <div
-                      className={`w-12 h-12 rounded-2xl mb-6 flex items-center justify-center
-                        ${isFeatured ? 'bg-white/10 text-white' : 'bg-[#F5F3EF] text-neutral-700'}`}
-                    >
-                      {index === 0 && <ShoppingBag className="w-5 h-5" />}
-                      {index === 1 && <Boxes className="w-5 h-5" />}
-                      {index === 2 && <LeafyGreen className="w-5 h-5" />}
-                    </div>
+            {/* Icono */}
+            <div className={`w-11 h-11 rounded-2xl mb-6 flex items-center justify-center
+              ${mat.featured ? 'bg-white/10 text-white' : 'bg-[#F5F3EF] text-neutral-700'}`}
+            >
+              {mat.icon}
+            </div>
 
-                    <h3 className="text-xl font-black mb-3">{category.name}</h3>
+            {/* Nombre */}
+            <h3 className="text-xl font-black mb-3 leading-tight">{mat.name}</h3>
 
-                    <p
-                      className={`text-sm leading-relaxed mb-6
-                        ${isFeatured ? 'text-neutral-400' : 'text-neutral-500'}`}
-                    >
-                      {category.description}
-                    </p>
+            {/* Descripción diferenciada */}
+            <p className={`text-sm leading-relaxed mb-7
+              ${mat.featured ? 'text-neutral-400' : 'text-neutral-500'}`}
+            >
+              {mat.desc}
+            </p>
 
-                    <ul
-                      className={`text-sm space-y-1.5
-                        ${isFeatured ? 'text-neutral-500' : 'text-neutral-400'}`}
-                    >
-                      <li>• Ideal para tiendas y marcas retail</li>
-                      <li>• Excelente presencia visual</li>
-                      <li>• Personalización completa</li>
-                    </ul>
+            {/* Specs reales */}
+            <div className={`space-y-3 mb-8 border-t pt-6
+              ${mat.featured ? 'border-white/10' : 'border-neutral-100'}`}
+            >
+              {mat.specs.map(({ label, value }) => (
+                <div key={label} className="flex justify-between items-start gap-4 text-xs">
+                  <span className={mat.featured ? 'text-neutral-500' : 'text-neutral-400'}>
+                    {label}
+                  </span>
+                  <span className={`font-semibold text-right ${mat.featured ? 'text-neutral-200' : 'text-neutral-700'}`}>
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
 
-                    <span
-                      className={`inline-block mt-8 font-bold text-sm
-                        ${isFeatured ? 'text-[#C3A681]' : 'text-neutral-900 group-hover:text-[#C3A681] transition-colors'}`}
-                    >
-                      Ver opciones →
-                    </span>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </AnimatedSection>
+            {/* CTA */}
+            <span className={`inline-flex items-center gap-1 font-bold text-sm transition-colors
+              ${mat.featured
+                ? 'text-[#C3A681]'
+                : 'text-neutral-900 group-hover:text-[#C3A681]'
+              }`}
+            >
+              Ver opciones →
+            </span>
+          </Link>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</AnimatedSection>
 
       {/* ─────────────────────────────────────────────────────────
           7. TESTIMONIOS  |  Nivel 2: #111111  |  py-24
