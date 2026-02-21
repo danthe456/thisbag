@@ -1,190 +1,204 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {  MessageCircle } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { MessageCircle, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-
-
-interface CustomizationData {
-  product: {
-    name: string;
-    basePrice: number;
-    dimensions: string;
-    material: string;
-  };
-  quantity: number;
-  hasLogo: boolean;
-  logoFileName?: string;
-}
+import { products } from '../data/products'; // Asegúrate de que la ruta sea correcta
 
 export default function QuoteFormPage() {
   const navigate = useNavigate();
-  const [customizationData, setCustomizationData] = useState<CustomizationData | null>(null);
+  const [searchParams] = useSearchParams();
+  
+  // Obtenemos el producto directamente de la URL
+  const productId = searchParams.get('productId');
+  const product = products.find(p => p.id === productId);
+
   const [formData, setFormData] = useState({
     name: '',
     city: '',
-    quantity: 0
+    size: 'Mediano (Estándar)',
+    material: product?.material || 'A convenir',
+    quantity: '500 unidades (Mínimo)',
+    logoType: '1 Tinta'
   });
 
+  // Si no hay producto, lo mandamos al catálogo para que elija uno
   useEffect(() => {
-    const data = localStorage.getItem('customization');
-    if (data) {
-      const parsed = JSON.parse(data);
-      setCustomizationData(parsed);
-      setFormData(prev => ({ ...prev, quantity: parsed.quantity }));
-    } else {
-      // Redirect to catalog if no customization data
+    if (!productId || !product) {
       navigate('/catalog');
     }
-  }, [navigate]);
+  }, [productId, product, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!customizationData) return;
+    // Mensaje estructurado para WhatsApp
+    const message = `*Nueva Solicitud de Asesoría - DOPACK*%0A%0A` +
+      `*Cliente:* ${formData.name}%0A` +
+      `*Ciudad:* ${formData.city}%0A%0A` +
+      `*Diseño de Referencia:* ${product?.name}%0A` +
+      `*Tamaño:* ${formData.size}%0A` +
+      `*Material:* ${formData.material}%0A` +
+      `*Logo:* ${formData.logoType}%0A` +
+      `*Cantidad:* ${formData.quantity}%0A%0A` +
+      `Me gustaría recibir asesoría profesional para mi marca basada en este diseño.`;
 
-    // Generate WhatsApp message
-    const message = `Hi! I'd like to request a quote for custom bags:
-
-📦 Product: ${customizationData.product.name}
-📐 Dimensions: ${customizationData.product.dimensions}
-🎨 Material: ${customizationData.product.material}
-📊 Quantity: ${formData.quantity} units
-${customizationData.hasLogo ? `🖼️ Logo: ${customizationData.logoFileName || 'Uploaded'}` : ''}
-
-👤 Name: ${formData.name}
-📍 City: ${formData.city}
-
-💰 Estimated Total: $${(customizationData.product.basePrice * formData.quantity).toFixed(2)}
-
-Looking forward to your response!`;
-
-    // Encode message for WhatsApp URL
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodedMessage}`;
-    
-    // Open WhatsApp
+    const whatsappUrl = `https://wa.me/573000000000?text=${message}`; // REEMPLAZA CON EL NÚMERO REAL
     window.open(whatsappUrl, '_blank');
-    
-    // Clear localStorage
-    localStorage.removeItem('customization');
   };
 
-  if (!customizationData) {
-    return null;
-  }
-
+  if (!product) return null;
 
   return (
-    <div className="min-h-screen bg-white">
-     
+    <div className="min-h-screen bg-[#FDFDFD]">
+      {/* Botón Volver */}
+      <div className="max-w-5xl mx-auto px-4 pt-8">
+        <button 
+          onClick={() => navigate(-1)} 
+          className="flex items-center gap-2 text-neutral-400 hover:text-black transition-colors text-sm font-medium"
+        >
+          <ArrowLeft className="w-4 h-4" /> Volver a la galería
+        </button>
+      </div>
 
-      {/* Main Content */}
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight mb-2">
-Solicitud de Cotización
-          </h1>
-          <p className="text-neutral-600">
-            Llena tus datos y te enviaremos tu solicitud de cotización por WhatsApp
-          </p>
-        </div>
-
-        {/* Order Summary */}
-        <div className="mb-8 p-6 bg-neutral-50 rounded-lg">
-          <h2 className="text-sm font-medium text-neutral-600 mb-4">ORDER SUMMARY</h2>
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-neutral-600">Product</span>
-              <span className="font-medium">{customizationData.product.name}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-neutral-600">Dimensions</span>
-              <span className="font-medium">{customizationData.product.dimensions}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-neutral-600">Material</span>
-              <span className="font-medium">{customizationData.product.material}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-neutral-600">Quantity</span>
-              <span className="font-medium">{formData.quantity} units</span>
-            </div>
-            {customizationData.hasLogo && (
-              <div className="flex justify-between text-sm">
-                <span className="text-neutral-600">Logo</span>
-                <span className="font-medium">✓ Uploaded</span>
-              </div>
-            )}
-            <div className="pt-4 mt-4 border-t border-neutral-200">
+      <main className="max-w-5xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-[32px] overflow-hidden shadow-sm border border-neutral-100">
+          
+          {/* LADO IZQUIERDO: Resumen Visual */}
+          <div className="bg-neutral-50 p-8 lg:p-12">
+            <div className="sticky top-12">
+              <span className="text-[#C3A681] font-bold text-xs uppercase tracking-widest">Inspiración Elegida</span>
+              <h2 className="text-3xl font-black text-neutral-900 mt-2 mb-6">{product.name}</h2>
               
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-8 group">
+                <img 
+                  src={product.imageUrl} 
+                  alt={product.name} 
+                  className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#C3A681] mt-0.5" />
+                  <p className="text-sm text-neutral-600">Asesoría personalizada en diseño y materiales.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#C3A681] mt-0.5" />
+                  <p className="text-sm text-neutral-600">Ajuste de medidas según la necesidad de tu negocio.</p>
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* LADO DERECHO: Formulario Consultivo */}
+          <div className="p-8 lg:p-12">
+            <div className="mb-10">
+              <h1 className="text-2xl font-bold text-neutral-900">Cuéntanos tu idea</h1>
+              <p className="text-neutral-500 mt-2">No necesitas datos técnicos. Nosotros te guiaremos.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Sección: Identificación */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-wider text-neutral-400">Tu Nombre / Empresa</Label>
+                  <input 
+                    required
+                    className="w-full border-b border-neutral-200 focus:border-[#C3A681] py-2 outline-none transition-colors bg-transparent"
+                    placeholder="Ej: Boutique Central"
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-wider text-neutral-400">Ciudad de entrega</Label>
+                  <input 
+                    required
+                    className="w-full border-b border-neutral-200 focus:border-[#C3A681] py-2 outline-none transition-colors bg-transparent"
+                    placeholder="Ej: Bucaramanga"
+                    onChange={(e) => setFormData({...formData, city: e.target.value})}
+                  />
+                </div>
+              </div>
+
+              {/* Sección: Opciones de Producto */}
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <Label className="text-[10px] font-black uppercase tracking-wider text-neutral-400">Referencia de Tamaño</Label>
+                  <select 
+                    className="w-full bg-neutral-50 border-none rounded-xl p-4 outline-none text-sm appearance-none cursor-pointer"
+                    onChange={(e) => setFormData({...formData, size: e.target.value})}
+                  >
+                    <option>Pequeño (Joyas, Accesorios)</option>
+                    <option selected>Mediano (Ropa, Calzado)</option>
+                    <option>Grande (Cajas, Chaquetas)</option>
+                    <option>Personalizado (Yo daré las medidas)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="text-[10px] font-black uppercase tracking-wider text-neutral-400">Preferencia de Material</Label>
+                  <select 
+                    className="w-full bg-neutral-50 border-none rounded-xl p-4 outline-none text-sm appearance-none cursor-pointer"
+                    onChange={(e) => setFormData({...formData, material: e.target.value})}
+                  >
+                    <option>Kraft Natural (Sostenible)</option>
+                    <option>Propalcote / Blanco (Premium)</option>
+                    <option>Plástico Biodegradable</option>
+                    <option>Cartón Corrugado</option>
+                  </select>
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="text-[10px] font-black uppercase tracking-wider text-neutral-400">Logo y Personalización</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {['1 Tinta', 'Full Color', 'Hot Stamping',].map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => setFormData({...formData, logoType: opt})}
+                        className={`px-4 py-2 rounded-full text-xs font-bold border transition-all ${
+                          formData.logoType === opt 
+                          ? 'bg-black text-white border-black' 
+                          : 'border-neutral-200 text-neutral-500 hover:border-black'
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <Label className="text-[10px] font-black uppercase tracking-wider text-neutral-400">Cantidad Estimada</Label>
+                  <select 
+                    className="w-full bg-neutral-50 border-none rounded-xl p-4 outline-none text-sm appearance-none cursor-pointer"
+                    onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+                  >
+                    <option>500 unidades (Mínimo)</option>
+                    <option>1,000 unidades</option>
+                    <option>3,000+ unidades</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Botón WhatsApp */}
+              <div className="pt-6">
+                <Button
+                  type="submit"
+                  className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white h-16 rounded-2xl text-lg font-bold shadow-lg shadow-green-200 flex items-center justify-center gap-3"
+                >
+                  <MessageCircle className="w-6 h-6" />
+                  Iniciar Asesoría en WhatsApp
+                </Button>
+                <p className="text-[10px] text-center text-neutral-400 mt-4 uppercase tracking-widest font-medium">
+                  Atención personalizada de Lunes a Sábado
+                </p>
+              </div>
+            </form>
+          </div>
         </div>
-
-        {/* Quote Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <Label htmlFor="name" className="text-sm font-medium mb-2 block">
-              Nombre Completo *
-            </Label>
-            <Input
-              id="name"
-              type="text"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              placeholder="John Doe"
-              required
-              className="text-base"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="city" className="text-sm font-medium mb-2 block">
-              ciudad *
-            </Label>
-            <Input
-              id="city"
-              type="text"
-              value={formData.city}
-              onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              placeholder="New York"
-              required
-              className="text-base"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="quantity-form" className="text-sm font-medium mb-2 block">
-              Cantidad *
-            </Label>
-            <Input
-              id="quantity-form"
-              type="number"
-              value={formData.quantity}
-              onChange={(e) => setFormData({ ...formData, quantity: parseInt(e.target.value) || 0 })}
-              required
-              className="text-base"
-            />
-          </div>
-
-          <div className="pt-6">
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full text-base flex items-center justify-center gap-2"
-            >
-              <MessageCircle className="w-5 h-5" />
-              solicitar cotización vía WhatsApp
-            </Button>
-            <p className="text-xs text-neutral-500 text-center mt-3">
-              You'll be redirected to WhatsApp with your quote details pre-filled
-            </p>
-          </div>
-        </form>
       </main>
-      
     </div>
   );
 }

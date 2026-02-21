@@ -11,6 +11,25 @@ import imgbolsa17 from '../../assets/empaque carton.jpeg';
 import imgbolsa3 from '../../assets/bolsa plastica.jpeg';
 import imgbolsa6 from '../../assets/bolsa plastica2.jpeg';
 import imgbolsa13 from '../../assets/bolsa plastica3.jpeg';
+import imgbolsa14 from '../../assets/nuevo1.jpeg';
+import imgbolsa18 from '../../assets/nuevo2.jpg';
+import imgbolsa19 from '../../assets/nuevo3.jpg';
+import imgbolsa20 from '../../assets/nuevo4.jpeg';
+import imgbolsa21 from '../../assets/nuevo5.jpeg';
+import imgbolsa22 from '../../assets/nuevo6.jpg';
+import imgbolsa23 from '../../assets/nuevo7.jpg';
+import imgbolsa24 from '../../assets/nuevo8.jpeg';
+import imgbolsa25 from '../../assets/nuevo9.jpg';
+import imgbolsa26 from '../../assets/nuevo10.jpg';
+import imgbolsa27 from '../../assets/nuevo11.jpg';
+import imgbolsa28 from '../../assets/nuevo12.jpg';
+import imgbolsa29 from '../../assets/nuevo13.jpg';
+import imgbolsa30 from '../../assets/nuevo14.jpg';
+import imgbolsa31 from '../../assets/nuevo15.jpg';
+import imgbolsa32 from '../../assets/nuevo16.jpg';
+import imgbolsa33 from '../../assets/nuevo17.jpeg';
+import imgbolsa34 from '../../assets/nuevo18.jpeg';
+
 /* ================================
    Types
 ================================ */
@@ -45,9 +64,82 @@ export const products: Product[] = [
     minQuantity: 1000,
     
   },
-
-  {
+ {
     id: 'paper-002',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa14,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  }, {
+    id: 'paper-003',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa18,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  }, {
+    id: 'paper-004',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa19,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },  {
+    id: 'paper-005',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa22,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },  {
+    id: 'paper-006',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa24,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  }, {
+    id: 'paper-007',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa25,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  }, {
+    id: 'paper-008',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa26,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+     {
+    id: 'paper-009',
+    name: 'Classic Kraft Paper Bag',
+    category: 'paper',
+    imageUrl: imgbolsa29,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+  {
+    id: 'paper-0010',
     name: 'Standard Paper Shopping Bag',
     category: 'paper',
     imageUrl: imgbolsa4,
@@ -58,7 +150,7 @@ export const products: Product[] = [
   },
 
   {
-    id: 'paper-003',
+    id: 'paper-0011',
     name: 'Premium Paper Bag',
     category: 'paper',
     imageUrl: imgbolsa5,
@@ -69,7 +161,7 @@ export const products: Product[] = [
   },
 
   {
-    id: 'paper-004',
+    id: 'paper-0012',
     name: 'Candy Paper Bag',
     category: 'paper',
     imageUrl: imgbolsa12,
@@ -80,7 +172,7 @@ export const products: Product[] = [
   },
 
   {
-    id: 'paper-005',
+    id: 'paper-0013',
     name: 'Luxury Paper Bag',
     category: 'paper',
     imageUrl: imgbolsa11,
@@ -103,9 +195,28 @@ export const products: Product[] = [
             minQuantity: "1 rollo de material ",
 
   },
+   {
+    id: 'plastic-002',
+    name: 'Classic Plastic Bag',
+    category: 'plastic',
+    imageUrl: imgbolsa33,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Plástico oxobiodegradable de alta resistencia',
+    minQuantity: 1000,
+    
+  }, {
+    id: 'plastic-003',
+    name: 'Classic Plastic Bag',
+    category: 'plastic',
+    imageUrl: imgbolsa34,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Plástico oxobiodegradable de alta resistencia',
+    minQuantity: 1000,
+    
+  },
 
   {
-    id: 'plastic-002',
+    id: 'plastic-004',
     name: 'Handled Plastic Bag',
     category: 'plastic',
     imageUrl: imgbolsa6,
@@ -116,7 +227,7 @@ export const products: Product[] = [
   },
 
   {
-    id: 'plastic-003',
+    id: 'plastic-005',
     name: 'Heavy Duty Plastic Bag',
     category: 'plastic',
     imageUrl: imgbolsa13,
@@ -181,8 +292,86 @@ export const products: Product[] = [
     material: 'Corrugated recycled cardboard',
         minQuantity: 1000,
 
-  }
-
+  },
+ {
+    id: 'eco-006',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa32,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+   {
+    id: 'eco-007',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa31,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+   {
+    id: 'eco-008',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa30,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+  {
+    id: 'eco-009',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa20,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+   {
+    id: 'eco-0010',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa21,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+  {
+    id: 'eco-0011',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa23,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },{
+    id: 'eco-0012',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa27,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
+  {
+    id: 'eco-0013',
+    name: 'Classic Kraft Paper Bag',
+    category: 'eco',
+    imageUrl: imgbolsa28,
+    dimensions: '25 × 35 × 10 cm',
+    material: 'Kraft paper 120gsm',
+    minQuantity: 1000,
+    
+  },
 ];
 
 /* ================================
