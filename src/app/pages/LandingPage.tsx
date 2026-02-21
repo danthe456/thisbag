@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LeafyGreen, ShoppingBag, Boxes, ChevronDown, MessageCircle, Star } from 'lucide-react';
+import { LeafyGreen, ShoppingBag, Boxes, ChevronDown, Star } from 'lucide-react';
 import { motion, useInView, type Variants } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { categories, products } from '../data/products';
