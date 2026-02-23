@@ -69,17 +69,7 @@ export default function Footer() {
             </p>
 
             {/* Redes sociales (opcional — agrega tus links reales) */}
-            <div className="flex gap-3 mt-7">
-              {['IG', 'FB', 'WA'].map((r) => (
-                <a
-                  key={r}
-                  href="#"
-                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#C3A681] border border-white/10 hover:border-transparent flex items-center justify-center text-[11px] font-black text-neutral-400 hover:text-white transition-all duration-200"
-                >
-                  {r}
-                </a>
-              ))}
-            </div>
+           
           </div>
 
           {/* Columna 2: Productos */}

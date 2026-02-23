@@ -113,7 +113,7 @@ export default function LandingPage() {
       {/* ─────────────────────────────────────────────────────────
           1. HERO  |  Nivel 0: #FAFAF8  |  py-32 md:py-40
       ───────────────────────────────────────────────────────── */}
-      <section className="py-32 md:py-40 overflow-hidden bg-[#FAFAF8]">
+<section className="pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden bg-[#FAFAF8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
