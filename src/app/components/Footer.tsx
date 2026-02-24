@@ -25,7 +25,6 @@ const EMPRESA = [
 ];
 
 const CONTACTO = [
-  { icon: '📍', text: 'Calle 33 No 11-83\nBucaramanga, Colombia' },
   { icon: '📞', text: '+57 318 643 5725' },
   { icon: '✉️', text: 'dmarpack@gmail.com' },
 ];

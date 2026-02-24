@@ -412,7 +412,7 @@ export default function CatalogPage() {
                   {[
                     { l: 'Material base',      v: selectedProduct.material || 'A elección del cliente' },
                     { l: 'Acabados posibles',  v: 'Estampado, relieve, plastificado mate o brillante' },
-                    { l: 'Dimensiones',        v: '100% personalizables' },
+                    { l: 'Dimensiones',        v: selectedProduct.dimensions || '100% personalizables' },
                   ].map(({ l, v }) => (
                     <div key={l} className="flex gap-3 text-sm">
                       <span className="text-neutral-400 min-w-[120px] flex-shrink-0">{l}</span>
